@@ -15,6 +15,9 @@ class CreateUploadFileTable extends Migration
     {
         Schema::create('upload_file', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('path');
+            $table->string('source')->comment('sell/lend');
+            $table->unsignedInteger('commodity_id');
             $table->timestamps();
         });
     }

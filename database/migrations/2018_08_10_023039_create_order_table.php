@@ -27,7 +27,6 @@ class CreateOrderTable extends Migration
             $table->string('return_code');
             $table->string('order_no');
             $table->string('openid');
-//            $table->unsignedInteger('commodity_id');
             $table->timestamps();
 
         });
@@ -41,5 +40,6 @@ class CreateOrderTable extends Migration
     public function down()
     {
         Schema::dropIfExists('order');
+        Schema::dropIfExists('order_response');
     }
 }

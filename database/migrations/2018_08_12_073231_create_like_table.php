@@ -15,6 +15,8 @@ class CreateLikeTable extends Migration
     {
         Schema::create('like', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('openid');
+            $table->string('source')->comment('read_report/moments');
             $table->timestamps();
         });
     }
