@@ -13,7 +13,7 @@ class CreateLikeTable extends Migration
      */
     public function up()
     {
-        Schema::create('like', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('openid');
             $table->string('source')->comment('read_report/moments');
