@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UploadFile extends Model
+class UserAccountLog extends Model
 {
     //
-    protected $table = 'upload_file';
+    protected $table = 'user_account_log';
 }

@@ -24,4 +24,12 @@ class Book extends Model
     public function images(){
         return $this->belongsToMany(UploadFile::class,'book_image','book_id','file_id');
     }
+
+    public function scopeSearch($query, $param)
+    {
+        return $query;
+    }
+
+//    public function tag(){}
+
 }
