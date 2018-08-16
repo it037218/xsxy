@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::namespace('Admin')->prefix('admin')->group(function () {
+    Route::group(['prefix' => 'book'], function () {
+        Route::get('/','BookController@index');
+    });
+
 });
+
+
+
