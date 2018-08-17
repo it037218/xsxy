@@ -1,1 +1,1 @@
-@extends('layouts.header');
+@extends('admin.layouts.base')
