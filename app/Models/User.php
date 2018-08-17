@@ -8,4 +8,19 @@ class User extends Model
 {
     //
     protected $table = 'users';
+    public function scopeSearch($query,$params){
+        if (array_key_exists('nickname',$params) && !empty($params['nickname'])){
+            $query->where('nickname','like','%'.$params['nickname'].'%');
+        }
+        if (array_key_exists('start_at',$params) && !empty($params['start_at'])){
+            $query->where('created_at','>=',$params['created_at']);
+        }
+        if (array_key_exists('end_at',$params) && !empty($params['end_at'])){
+            $query->where('created_at','<=',$params['created_at']);
+        }
+        if (array_key_exists('user_type',$params) && !empty($params['user_type'])){
+            $query->where('user_type',$params['user_type']);
+        }
+        return $query;
+    }
 }

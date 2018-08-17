@@ -91,17 +91,20 @@
         /*.layui-breadcrumb a {*/
             /*display: inline-block;*/
         /*}*/
+        .layui-layout-admin .layui-side{
+            top: 61px;
+        }
     </style>
     @yield('link_pre')
     @yield('script_pre')
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
+    <div class="layui-header  layui-bg-green">
         {{--<div class="layui-logo">--}}
             {{--图书--}}
         {{--</div>--}}
-        <div style="color: rgb(0, 150, 136); font-size: 28px;height: 60px;line-height: 60px;padding-left: 20px;font-weight: bold">
+        <div style="color: #fff; font-size: 28px;height: 60px;line-height: 60px;padding-left: 20px;font-weight: bold">
             图书
         </div>
         <ul class="layui-nav layui-layout-right ">
