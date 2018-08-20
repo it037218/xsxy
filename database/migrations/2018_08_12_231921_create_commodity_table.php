@@ -17,10 +17,11 @@ class CreateCommodityTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('book_id');
             $table->string('commodity_name');
-            $table->integer('stock');
+            $table->integer('stock')->comment('库存');
             $table->string('type')->comment('sell/lend');
-            $table->float('commodity_price')->comment('价格');
+            $table->decimal('commodity_price',8,2)->comment('价格');
             $table->integer('commodity_period')->comment('周期');
+            $table->integer('sold_nums')->comment('售出数量');
             $table->softDeletes();
             $table->timestamps();
         });

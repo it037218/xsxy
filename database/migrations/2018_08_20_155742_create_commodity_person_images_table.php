@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentTable extends Migration
+class CreateCommodityPersonImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateCommentTable extends Migration
      */
     public function up()
     {
-        Schema::create('comment', function (Blueprint $table) {
+        Schema::create('commodity_person_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('openid');
-            $table->string('source')->comment('moments/buy/borrow/person');
-            $table->unsignedInteger('commodity_id')->comment('商品编号');
-            $table->text('content')->comment('评论详情');
+            $table->unsignedInteger('commodity_id');
+            $table->unsignedInteger('image_id');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateCommentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment');
+        Schema::dropIfExists('commodity_person_images');
     }
 }
