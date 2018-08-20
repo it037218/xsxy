@@ -17,8 +17,8 @@ class CreateUserAccount extends Migration
         Schema::create('user_account',function (Blueprint $table){
             $table->unsignedInteger('id');
             $table->string('openid')->comment('用户openid');
-            $table->float('total_account')->commnet('账户总金额');
-            $table->float('use_account')->commnet('可用金额');
+            $table->float('total_account')->comment('账户总金额');
+            $table->float('use_account')->comment('可用金额');
             $table->float('frozen_account')->comment('冻结金额');
             $table->string('bank_name')->comment('开户银行');
             $table->string('bank_account')->comment('银行卡号');
@@ -32,7 +32,7 @@ class CreateUserAccount extends Migration
             $table->string('openid');
             $table->float('account');
             $table->string('type')->comment('recharge/withdraw/frozen');
-            $table->boolean('remark')->commnet();
+            $table->boolean('remark')->comment();
             $table->string('order_no')->comment('订单编号');
             $table->timestamps();
             $table->softDeletes();

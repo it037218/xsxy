@@ -15,6 +15,11 @@ class CreateCommodityTable extends Migration
     {
         Schema::create('commodity', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('book_id');
+            $table->string('commodity_name');
+            $table->integer('stock');
+            $table->string('type')->comment('sell/lend');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

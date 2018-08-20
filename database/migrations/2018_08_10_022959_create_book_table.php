@@ -15,7 +15,7 @@ class CreateBookTable extends Migration
     {
         Schema::create('book', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('book_name')->commnet('书籍名称');
+            $table->string('book_name')->comment('书籍名称');
             $table->string('description')->comment('描述');
             $table->unsignedInteger('type_id')->comment('类型');
             $table->string('author')->comment('作者');
