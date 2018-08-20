@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommodityTable extends Migration
+class CreateActivitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateCommodityTable extends Migration
      */
     public function up()
     {
-        Schema::create('commodity', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('book_id');
-            $table->string('commodity_name');
-            $table->integer('stock');
-            $table->string('type')->comment('sell/lend');
-            $table->float('commodity_price')->comment('价格');
-            $table->integer('commodity_period')->comment('周期');
+            $table->string('name');
+            $table->string('page_url');
+            $table->integer('order');
             $table->softDeletes();
             $table->timestamps();
         });
+        Schema::create('');
     }
 
     /**
@@ -33,6 +31,6 @@ class CreateCommodityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commodity');
+        Schema::dropIfExists('activities');
     }
 }

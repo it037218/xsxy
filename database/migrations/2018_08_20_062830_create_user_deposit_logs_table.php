@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserReadProcessTable extends Migration
+class CreateUserDepositLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateUserReadProcessTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_read_process', function (Blueprint $table) {
+        Schema::create('user_deposit_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('openid');
-            $table->string('process')->comment('进度');
+            $table->string('content');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateUserReadProcessTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_read_process');
+        Schema::dropIfExists('user_deposit_logs');
     }
 }
