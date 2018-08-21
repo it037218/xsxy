@@ -19,7 +19,7 @@ class CreateBorrowLocationsTable extends Migration
             $table->string('source','20')->comment('来源：borrow/person');
             $table->double('latitude',10,6);
             $table->double('longitude',10,6);
-            $table->string('location_name',100)->comment('左边名称');
+            $table->string('location_name',100)->comment('坐标名称');
             $table->timestamps();
         });
     }
