@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommodityTagsTable extends Migration
+class CreateBookTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateCommodityTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commodity_tags', function (Blueprint $table) {
+        Schema::create('book_tags', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('book_id')->comment('书籍编号');
+            $table->unsignedInteger('tag_id')->comment('标签编号');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateCommodityTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commodity_tags');
+        Schema::dropIfExists('book_tags');
     }
 }

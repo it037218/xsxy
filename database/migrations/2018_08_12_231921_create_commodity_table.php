@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCommodityTable extends Migration
 {
@@ -18,8 +18,10 @@ class CreateCommodityTable extends Migration
             $table->unsignedInteger('book_id');
             $table->string('commodity_name');
             $table->integer('stock')->comment('库存');
+            $table->string('sale_number', '100')->comment('商品编号');
+            $table->unsignedInteger('status')->default('100')->comment('100 初始状态，101，上架，102，下架');
             $table->string('type')->comment('sell/lend');
-            $table->decimal('commodity_price',8,2)->comment('价格');
+            $table->decimal('commodity_price', 8, 2)->comment('价格');
             $table->integer('commodity_period')->comment('周期');
             $table->integer('sold_nums')->comment('售出数量');
             $table->softDeletes();

@@ -24,6 +24,13 @@ class UpdateBook extends FormRequest
     public function rules()
     {
         return [
+            'book_name' => 'required',
+            'description' => 'required',
+            'images' => 'required',
+            'stock' => 'required',
+            'author'    =>'required',
+            'cover_image_id'    =>'required|integer',
+
             //
         ];
     }
