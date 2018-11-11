@@ -15,7 +15,11 @@ class BookController extends Controller
     //
     public function index()
     {
-        return view('admin.book.index');
+        $bookService = new BookServices();
+        $result = $bookService->getAllBook();
+        return view('admin.book.index')->with([
+            'result' => $result
+        ]);
     }
 
     public function show(Request $request, $id)
