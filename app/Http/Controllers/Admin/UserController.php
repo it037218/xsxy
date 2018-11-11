@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\UserServices;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,7 +12,9 @@ class UserController extends Controller
     //
     public function index()
     {
-        $result = collect([]);
+        $userService = new UserServices();
+        $param = [];
+        $result = $userService->getAllUsers($param);
         return view('admin.user.index')->with(
             [
                 'result' => $result

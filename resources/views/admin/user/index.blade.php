@@ -3,11 +3,6 @@
 
 @section('main')
     <table class="layui-table" lay-skin="line" lay-size="lg">
-        <colgroup>
-            <col width="150">
-            <col width="200">
-            <col>
-        </colgroup>
         <thead>
         <tr>
             <th>姓名</th>
