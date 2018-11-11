@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -10,32 +11,32 @@ class UserController extends Controller
     //
     public function index()
     {
-        return view('admin.user.index');
+        $result = collect([]);
+        return view('admin.user.index')->with(
+            [
+                'result' => $result
+            ]
+        );
     }
 
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        return view('admin.user.show');
-    }
-
-
-    public function store(Request $request)
-    {
-
-        if ($request->method() == 'GET') {
-            return view('admin.user.store');
-        } else {
-
-
-        }
+        $result = User::find($id);
+        return view('admin.user.show')->with([
+            'result' => $result
+        ]);
     }
 
     public function modify(Request $request, $id)
     {
         if ($request->method() == 'GET') {
-            return view('admin.user.modify');
+            $result = User::find($id);
+            return view('admin.user.modify')->with([
+                'result' => $result
+            ]);
         } else {
-
+            $data = $request->input('');
+            User::find($id)->update($data);
         }
     }
 
