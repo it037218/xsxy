@@ -18,6 +18,13 @@ Route::prefix('app')->group(function () {
         Route::get('saveUserFullInfo','UserController@saveUserFullInfo');
         Route::get('getUserInfo','UserController@getUserInfo');
     });
+    Route::group(['prefix'=>'report'],function (){
+        Route::get('list','ReportController@index');
+        Route::get('store','UserController@store');
+        Route::get('comment/store','UserController@storeComment');
+        Route::get('comment/list','UserController@commentList');
+        Route::get('changeAgree','UserController@changeAgree');
+    });
 });
 
 
