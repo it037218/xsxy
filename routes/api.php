@@ -19,11 +19,11 @@ Route::prefix('app')->group(function () {
         Route::get('getOpenid','UserController@getOpenid');
         Route::get('saveUserInfo','UserController@saveUserInfo');
         Route::get('saveUserFullInfo','UserController@saveUserFullInfo');
-        Route::post('getUserInfo','UserController@getUserInfo');
+        Route::get('getUserInfo','UserController@getUserInfo');
     });
 });
 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
