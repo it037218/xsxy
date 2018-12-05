@@ -16,10 +16,10 @@ use Illuminate\Http\Request;
 
 Route::prefix('app')->group(function () {
     Route::group(['prefix'=>'user'],function (){
-        Route::get('/','UserController@index');
-        Route::get('/show/id/{id}','UserController@show');
-        Route::get('/modify/id/{id}','UserController@modify');
-        Route::post('/update','UserController@update');
+        Route::get('getOpenid','UserController@getOpenid');
+        Route::get('saveUserInfo','UserController@saveUserInfo');
+        Route::get('saveUserFullInfo','UserController@saveUserFullInfo');
+        Route::post('getUserInfo','UserController@getUserInfo');
     });
 });
 
