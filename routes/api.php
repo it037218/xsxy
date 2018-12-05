@@ -14,6 +14,14 @@ use Illuminate\Http\Request;
 */
 
 
+Route::prefix('app')->group(function () {
+    Route::group(['prefix'=>'user'],function (){
+        Route::get('/','UserController@index');
+        Route::get('/show/id/{id}','UserController@show');
+        Route::get('/modify/id/{id}','UserController@modify');
+        Route::post('/update','UserController@update');
+    });
+});
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
