@@ -57,5 +57,12 @@ class UserController extends Controller
         return ['success' => $result ? 1 : 0];
     }
 
+    public function getUserInfo(Request $request)
+    {
+        $openid = $request->input('openid');
+        $result = User::where('openid', $openid)->first();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
+
 
 }
