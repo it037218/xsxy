@@ -16,4 +16,9 @@ class Report extends Model
     {
         return $this->belongsToMany(Image::class, 'report_image', 'report_id', 'image_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(ReportComment::class, 'id', 'report_id');
+    }
 }

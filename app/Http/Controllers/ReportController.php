@@ -12,8 +12,17 @@ class ReportController extends Controller
     //
     public function index(Request $request)
     {
-
-
+        $type = $request->input('type', 'new');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 10);
+        $result = Report::with(['images', 'comments']);
+        if ($type == 'hot') {
+            $result->orderByDesc('comments');
+        } else {
+            $result->orderByDesc('created_at');
+        }
+        $result = $result->skip(($page - 1) * $pageSize)->take($pageSize)->get();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
     public function store(Request $request)
