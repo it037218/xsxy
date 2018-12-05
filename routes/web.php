@@ -10,6 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::prefix('app')->group(function () {
+    Route::group(['prefix'=>'user'],function (){
+        Route::get('/','UserController@index');
+        Route::get('/show/id/{id}','UserController@show');
+        Route::get('/modify/id/{id}','UserController@modify');
+        Route::post('/update','UserController@update');
+    });
+});
+
+
+
 Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::group(['prefix' => 'book'], function () {
         Route::get('/','BookController@index');

@@ -11,6 +11,7 @@ class UserController extends Controller
     //
     public function index(Request $request)
     {
+        echo 1111;exit;
         $service = new UserServices();
         $result = $service->getAllUsers($request->all());
         return view('admin.user.index', $result);
