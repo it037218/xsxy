@@ -20,10 +20,10 @@ Route::prefix('app')->group(function () {
     });
     Route::group(['prefix'=>'report'],function (){
         Route::get('list','ReportController@index');
-        Route::post('store','UserController@store');
-        Route::post('comment/store','UserController@storeComment');
-        Route::get('comment/list','UserController@commentList');
-        Route::get('changeAgree','UserController@changeAgree');
+        Route::post('store','ReportController@store');
+        Route::post('comment/store','ReportController@storeComment');
+        Route::get('comment/list','ReportController@commentList');
+        Route::get('changeAgree','ReportController@changeAgree');
     });
     Route::group(['prefix'=>'teacher'],function (){
         Route::post('store','TeacherController@store');
