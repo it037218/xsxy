@@ -31,6 +31,7 @@ Route::prefix('app')->group(function () {
     });
     Route::group(['prefix'=>'system'],function (){
         Route::post('upload','SystemController@upload');
+        Route::post('saveFormId','SystemController@saveFormId');
     });
 });
 
