@@ -34,7 +34,7 @@ class UserController extends Controller
             'avatar_url' => $request->input('avatar_url'),
             'openid' => $openid
         ];
-        $result = User::firstOrCreate(['openid' => $openid], [$data]);
+        $result = User::updateOrCreate(['openid' => $openid], [$data]);
         return ['success' => $result ? 1 : 0];
     }
 
