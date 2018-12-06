@@ -6,6 +6,7 @@ use App\Models\Report;
 use App\Models\ReportComment;
 use App\Models\UserReportAgree;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
 {
@@ -45,9 +46,11 @@ class ReportController extends Controller
         $reportId = $rst1->id;
 
         $images = $request->input('images');
-        $rst2 = Report::find($reportId)->images()->sync($images);
-
-        return ['success' => $rst2 ? 1 : 0];
+        Log::info(json_encode($images));
+        if ($images) {
+            $rst2 = Report::find($reportId)->images()->sync($images);
+        }
+        return ['success' => 1];
 
 
     }
