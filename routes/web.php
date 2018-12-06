@@ -25,6 +25,13 @@ Route::prefix('app')->group(function () {
         Route::get('comment/list','UserController@commentList');
         Route::get('changeAgree','UserController@changeAgree');
     });
+    Route::group(['prefix'=>'teacher'],function (){
+        Route::get('store','TeacherController@store');
+        Route::get('show','TeacherController@show');
+    });
+    Route::group(['prefix'=>'system'],function (){
+        Route::get('upload','SystemController@store');
+    });
 });
 
 
