@@ -14,19 +14,19 @@
 Route::prefix('app')->group(function () {
     Route::group(['prefix'=>'user'],function (){
         Route::get('getOpenid','UserController@getOpenid');
-        Route::get('saveUserInfo','UserController@saveUserInfo');
-        Route::get('saveUserFullInfo','UserController@saveUserFullInfo');
+        Route::post('saveUserInfo','UserController@saveUserInfo');
+        Route::post('saveUserFullInfo','UserController@saveUserFullInfo');
         Route::get('getUserInfo','UserController@getUserInfo');
     });
     Route::group(['prefix'=>'report'],function (){
         Route::get('list','ReportController@index');
-        Route::get('store','UserController@store');
-        Route::get('comment/store','UserController@storeComment');
+        Route::post('store','UserController@store');
+        Route::post('comment/store','UserController@storeComment');
         Route::get('comment/list','UserController@commentList');
         Route::get('changeAgree','UserController@changeAgree');
     });
     Route::group(['prefix'=>'teacher'],function (){
-        Route::get('store','TeacherController@store');
+        Route::post('store','TeacherController@store');
         Route::get('show','TeacherController@show');
     });
     Route::group(['prefix'=>'system'],function (){
