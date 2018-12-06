@@ -6,6 +6,7 @@ use App\Models\Report;
 use App\Models\ReportComment;
 use App\Models\UserReportAgree;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
@@ -37,20 +38,28 @@ class ReportController extends Controller
             'content' => $content,
             'book_name' => $bookName
         ];
-        $rst1 = Report::create($data);
+        DB::beginTransaction();
+        try {
+            $rst1 = Report::create($data);
 
-        if (!$rst1) {
+            if (!$rst1) {
+                return ['success' => 0];
+            }
+
+            $reportId = $rst1->id;
+
+            $images = $request->input('images');
+            Log::info(json_encode($images));
+            if ($images) {
+                $rst2 = Report::find($reportId)->images()->sync($images);
+            }
+            DB::commit();
+
+            return ['success' => 1];
+        } catch (\Exception $exception) {
+            DB::rollBack();
             return ['success' => 0];
         }
-
-        $reportId = $rst1->id;
-
-        $images = $request->input('images');
-        Log::info(json_encode($images));
-        if ($images) {
-            $rst2 = Report::find($reportId)->images()->sync($images);
-        }
-        return ['success' => 1];
 
 
     }
