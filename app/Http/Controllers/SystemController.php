@@ -11,9 +11,7 @@ class SystemController extends Controller
     public function upload(Request $request)
     {
         $fileName = uniqid() . '.png';
-        $path = $request->file('file')->storeAs(
-            'public', $fileName
-        );
+        $path = $request->file('file')->storeAs('public', $fileName);
 
         $fullUrl = "https://miniapp.xishuxiyou.com/storage/" . $fileName;
 
