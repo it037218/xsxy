@@ -17,7 +17,7 @@ class SystemController extends Controller
 
         $result = Image::create(['url' => $fullUrl]);
 
-        return ['success' => $result ? 1 : 0, 'image_id' => $result->id];
+        return ['success' => $result ? 1 : 0, 'img_id' => $result->id,'img_url'=>$fullUrl];
 
     }
 }
