@@ -30,7 +30,7 @@ Route::prefix('app')->group(function () {
         Route::get('show','TeacherController@show');
     });
     Route::group(['prefix'=>'system'],function (){
-        Route::post('upload','SystemController@store');
+        Route::post('upload','SystemController@upload');
     });
 });
 
