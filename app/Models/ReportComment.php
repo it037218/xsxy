@@ -9,4 +9,9 @@ class ReportComment extends Model
     //
     protected $table = 'report_comment';
     protected $guarded = [];
+
+    public function author()
+    {
+        return $this->hasOne(User::class, 'openid', 'openid');
+    }
 }
