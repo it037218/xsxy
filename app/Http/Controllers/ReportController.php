@@ -17,7 +17,7 @@ class ReportController extends Controller
         $type = $request->input('type', 'new');
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 10);
-        $result = Report::with(['images', 'comments']);
+        $result = Report::with(['images', 'comments', 'author']);
         if ($type == 'hot') {
             $result->orderByDesc('comments');
         } else {

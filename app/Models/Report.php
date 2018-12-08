@@ -21,4 +21,9 @@ class Report extends Model
     {
         return $this->hasMany(ReportComment::class, 'id', 'report_id');
     }
+
+    public function author()
+    {
+        return $this->hasOne(User::class, 'openid', 'openid');
+    }
 }
