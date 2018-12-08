@@ -19,7 +19,7 @@ class Report extends Model
 
     public function comments()
     {
-        return $this->hasMany(ReportComment::class, 'id', 'report_id');
+        return $this->hasMany(ReportComment::class, 'report_id', 'id');
     }
 
     public function author()
