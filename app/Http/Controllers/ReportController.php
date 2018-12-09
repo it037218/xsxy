@@ -23,7 +23,7 @@ class ReportController extends Controller
             return $query->where('status',1);
         }]);
         if ($type == 'hot') {
-            $result->orderByDesc('comments');
+            $result->orderByDesc('comments_count');
         } else {
             $result->orderByDesc('created_at');
         }
