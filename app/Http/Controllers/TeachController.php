@@ -23,7 +23,7 @@ class TeachController extends Controller
             'service_area' => $request->input('service_area'),
             'mobile' => $request->input('mobile')
         ];
-        $result = Teacher::firstOrreate(['openid' => $openid], $data);
+        $result = Teacher::firstOrCreate(['openid' => $openid], $data);
         return ['success' => $result ? 1 : 0];
     }
 
