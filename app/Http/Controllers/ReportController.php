@@ -16,18 +16,30 @@ class ReportController extends Controller
     {
         $type = $request->input('type', 'new');
         $page = $request->input('page', 1);
+        $openid = $request->input('openid');
         $pageSize = $request->input('pageSize', 10);
         $result = Report::with(['images', 'comments' => function ($query) {
             return $query->orderByDesc('created_at')->skip(0)->take(21)->get();
-        }, 'author', 'comments.author'])->withCount(['comments','like'=>function($query){
-            return $query->where('status',1);
-        }]);
+        }, 'author', 'comments.author'])
+            ->withCount(['comments', 'like' => function ($query) {
+                return $query->where('status', 1);
+            }]);
         if ($type == 'hot') {
             $result->orderByDesc('comments_count');
         } else {
             $result->orderByDesc('created_at');
         }
         $result = $result->skip(($page - 1) * $pageSize)->take($pageSize)->get();
+
+        foreach ($result as $k => $v) {
+            $result[$k]->is_like = false;
+
+            $rst = UserReportAgree::where('openid', $openid)->where('report_id', $v->id)->first();
+            if ($rst) {
+                $result[$k]->is_like = true;
+            }
+        }
+
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
@@ -82,7 +94,7 @@ class ReportController extends Controller
         $rst->status = !$rst->status;
         $result = $rst->save();
 
-         UserReportAgree::where('openid', $openid)->where('report_id',$reportId)->first();
+        UserReportAgree::where('openid', $openid)->where('report_id', $reportId)->first();
 //        if ($rst1->status) {
 //            Report::find($reportId)->increment('likes');
 //        } else {
