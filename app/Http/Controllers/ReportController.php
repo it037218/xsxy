@@ -17,9 +17,9 @@ class ReportController extends Controller
         $type = $request->input('type', 'new');
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 10);
-        $result = Report::with(['images', 'comments'=>function($query){
+        $result = Report::with(['images', 'comments' => function ($query) {
             return $query->orderByDesc('created_at')->skip(0)->take(2)->get();
-        }, 'author','comments.author']);
+        }, 'author', 'comments.author']);
         if ($type == 'hot') {
             $result->orderByDesc('comments');
         } else {
@@ -110,7 +110,12 @@ class ReportController extends Controller
     public function commentList(Request $request)
     {
         $reportId = $request->input('report_id');
-        $result = ReportComment::with(['author'])->where('report_id', $reportId)->orderByDesc('created_at')->get();
+        $result = ReportComment::with(['author'])
+            ->where('report_id', $reportId)
+            ->orderByDesc('created_at')
+            ->skip(0)
+            ->take(21)
+            ->get();
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 }
