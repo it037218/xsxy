@@ -33,6 +33,12 @@ Route::prefix('app')->group(function () {
         Route::post('upload','SystemController@upload');
         Route::post('saveFormId','SystemController@saveFormId');
     });
+    Route::group(['prefix'=>'book'],function (){
+        Route::post('store','BookController@store');
+        Route::get('detail','BookController@detail');
+        Route::get('list','BookController@index');
+    });
+
 });
 
 
