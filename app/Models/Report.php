@@ -26,4 +26,9 @@ class Report extends Model
     {
         return $this->hasOne(User::class, 'openid', 'openid');
     }
+
+    public function like()
+    {
+        return $this->hasMany(UserReportAgree::class, 'report_id', 'id');
+    }
 }
