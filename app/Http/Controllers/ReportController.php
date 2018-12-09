@@ -110,7 +110,7 @@ class ReportController extends Controller
     public function commentList(Request $request)
     {
         $reportId = $request->input('report_id');
-        $result = ReportComment::where('report_id', $reportId)->get();
+        $result = ReportComment::with(['author'])->where('report_id', $reportId)->orderByDesc('created_at')->get();
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 }
