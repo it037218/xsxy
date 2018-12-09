@@ -80,12 +80,12 @@ class ReportController extends Controller
         $rst->status = !$rst->status;
         $result = $rst->save();
 
-        $rst1 = UserReportAgree::where('openid', $openid)->where('report_id',$reportId)->first();
-        if ($rst1->status) {
-            Report::find($reportId)->increment('likes');
-        } else {
-            Report::find($reportId)->decrement('likes');
-        }
+         UserReportAgree::where('openid', $openid)->where('report_id',$reportId)->first();
+//        if ($rst1->status) {
+//            Report::find($reportId)->increment('likes');
+//        } else {
+//            Report::find($reportId)->decrement('likes');
+//        }
         return ['success' => $result ? 1 : 0];
     }
 
