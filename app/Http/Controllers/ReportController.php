@@ -39,7 +39,6 @@ class ReportController extends Controller
                 $result[$k]->is_like = true;
             }
         }
-
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
