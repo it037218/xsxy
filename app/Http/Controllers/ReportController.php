@@ -115,9 +115,9 @@ class ReportController extends Controller
             'report_id' => $reportId,
         ];
         $result = ReportComment::create($data);
-        if ($result) {
-            Report::find($reportId)->increment('comments');
-        }
+//        if ($result) {
+//            Report::find($reportId)->increment('comments');
+//        }
         return ['success' => $result ? 1 : 0];
     }
 
