@@ -131,4 +131,16 @@ class ReportController extends Controller
             ->get();
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
+
+    public function detail(Request $request)
+    {
+        $reportId = $request->input('report_id');
+        $result = Report::with(['images', 'comments' => function ($query) {
+            return $query->orderByDesc('created_at')->skip(0)->take(21)->get();
+        }, 'author', 'comments.author'])
+            ->withCount(['comments', 'like' => function ($query) {
+                return $query->where('status', 1);
+            }])->where('id', $reportId)->first();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
 }

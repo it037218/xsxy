@@ -26,6 +26,7 @@ Route::prefix('app')->group(function () {
         Route::post('comment/store','ReportController@storeComment');
         Route::get('comment/list','ReportController@commentList');
         Route::get('changeAgree','ReportController@changeAgree');
+        Route::get('detail','ReportController@detail');
     });
     Route::group(['prefix'=>'teacher'],function (){
         Route::post('store','TeacherController@store');
