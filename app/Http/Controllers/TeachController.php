@@ -26,4 +26,16 @@ class TeachController extends Controller
         $result = Teacher::firstOrreate(['openid' => $openid], $data);
         return ['success' => $result ? 1 : 0];
     }
+
+    public function index(Request $request)
+    {
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 10);
+        $result = Teacher::with('teacher')
+            ->orderByDesc('created_at')
+            ->skip(($page - 1) * $pageSize)
+            ->take($pageSize)
+            ->get();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
 }
