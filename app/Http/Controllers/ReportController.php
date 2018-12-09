@@ -18,7 +18,9 @@ class ReportController extends Controller
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 10);
         $result = Report::with(['images', 'comments' => function ($query) {
-            return $query->orderByDesc('created_at')->skip(0)->take(21)->get();
+            return $query->orderByDesc('created_at')->withCount('comments')
+
+                ->skip(0)->take(21)->get();
         }, 'author', 'comments.author']);
         if ($type == 'hot') {
             $result->orderByDesc('comments');
