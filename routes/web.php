@@ -17,6 +17,8 @@ Route::prefix('app')->group(function () {
         Route::post('saveUserInfo','UserController@saveUserInfo');
         Route::post('saveUserFullInfo','UserController@saveUserFullInfo');
         Route::get('getUserInfo','UserController@getUserInfo');
+        Route::get('report/list','UserController@getUserReport');
+        Route::get('book/pub','UserController@getUserPubBook');
     });
     Route::group(['prefix'=>'report'],function (){
         Route::get('list','ReportController@index');

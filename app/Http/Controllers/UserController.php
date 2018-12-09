@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Report;
 use App\Models\User;
 use App\Services\UserServices;
 use Illuminate\Http\Request;
@@ -64,5 +66,29 @@ class UserController extends Controller
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
+
+    public function getUserReport(Request $request)
+    {
+        $openid = $request->input('openid');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 10);
+        $result = Report::with(['images', 'comments' => function ($query) {
+            return $query->orderByDesc('created_at')->skip(0)->take(21)->get();
+        }, 'author', 'comments.author'])
+            ->withCount(['comments', 'like' => function ($query) {
+                return $query->where('status', 1);
+            }]);
+        $result->where('openid', $openid)->orderByDesc('created_at');
+
+        $result = $result->skip(($page - 1) * $pageSize)->take($pageSize)->get();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
+
+    public function getUserPubBook(Request $request)
+    {
+        $openid = $request->input('openid');
+        $result = Book::with(['cover_image'])->where('openid', $openid)->orderByDesc('created_at')->get();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
 
 }
