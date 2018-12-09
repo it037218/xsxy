@@ -34,7 +34,9 @@ class BookController extends Controller
 
     public function detail(Request $request)
     {
-
+        $id = $request->input('book_id');
+        $result = Book::with('cover_image')->find($id);
+        return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
 
