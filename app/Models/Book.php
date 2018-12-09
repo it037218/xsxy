@@ -21,7 +21,7 @@ class Book extends Model
 
     public function cover_image()
     {
-        return $this->hasOne(Image::class, 'cover_image_id', 'id');
+        return $this->hasOne(Image::class, 'id', 'cover_image_id');
     }
 
     public function images()
