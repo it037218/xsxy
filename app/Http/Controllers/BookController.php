@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Report;
+use App\Models\UserReportAgree;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -39,5 +41,31 @@ class BookController extends Controller
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
+    public function reportList(Request $request)
+    {
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', '10');
+        $openid = $request->input('openid');
+        $bookId = $request->input('book_id');
+        $result = Report::with(['images', 'comments' => function ($query) {
+            return $query->orderByDesc('created_at')->skip(0)->take(21)->get();
+        }, 'author', 'comments.author'])
+            ->withCount(['comments', 'like' => function ($query) {
+                return $query->where('status', 1);
+            }])->where('book_id', $bookId);
 
+        $result->orderByDesc('created_at');
+
+        $result = $result->skip(($page - 1) * $pageSize)->take($pageSize)->get();
+
+        foreach ($result as $k => $v) {
+            $result[$k]->is_like = false;
+
+            $rst = UserReportAgree::where('openid', $openid)->where('report_id', $v->id)->first();
+            if ($rst) {
+                $result[$k]->is_like = true;
+            }
+        }
+        return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
 }

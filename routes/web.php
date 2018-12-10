@@ -40,6 +40,7 @@ Route::prefix('app')->group(function () {
         Route::post('store','BookController@store');
         Route::get('detail','BookController@detail');
         Route::get('list','BookController@index');
+        Route::get('report/list','BookController@reportList');
     });
 
 });
