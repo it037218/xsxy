@@ -95,12 +95,14 @@ class UserController extends Controller
     public function getUserStoredBook(Request $request)
     {
         $openid = $request->input('openid');
-        $result = UserBookStore::with(['book','book.cover_image'])->where('openid', $openid)->orderByDesc('created_at')->get();
+        $result = UserBookStore::with(['book', 'book.cover_image'])->where('openid', $openid)->orderByDesc('created_at')->get();
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
     public function deleteUserStoredBook(Request $request)
     {
-
+        $id = $request->input('id');
+        $result = UserBookStore::find($id)->delete();
+        return ['success' => $result ? 1 : 0];
     }
 }
