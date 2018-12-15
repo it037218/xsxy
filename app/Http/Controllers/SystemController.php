@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FormId;
 use App\Models\Image;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class SystemController extends Controller
@@ -32,5 +33,11 @@ class SystemController extends Controller
         ];
         $result = FormId::create($data);
         return ['success' => $result ? 1 : 0];
+    }
+
+    public function sliderList()
+    {
+        $result = Slider::all();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 }
