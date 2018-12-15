@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Report;
 use App\Models\User;
+use App\Models\UserBookStore;
 use App\Services\UserServices;
 use Illuminate\Http\Request;
 
@@ -91,4 +92,15 @@ class UserController extends Controller
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
+    public function getUserStoredBook(Request $request)
+    {
+        $openid = $request->input('openid');
+        $result = UserBookStore::with(['book'])->where('openid', $openid)->orderByDesc('created_at')->get();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
+
+    public function deleteUserStoredBook(Request $request)
+    {
+
+    }
 }

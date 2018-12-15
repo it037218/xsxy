@@ -20,7 +20,9 @@ Route::prefix('app')->group(function () {
         Route::get('report/list', 'UserController@getUserReport');
         Route::get('book/pub', 'UserController@getUserPubBook');
         Route::get('course/pub/list', 'UserController@userPubCourseList');   //创建课程列表
-        Route::get('course/pub/list', 'UserController@userPubCourseList');   //购买课程列表
+//        Route::get('course/pub/list', 'UserController@userPubCourseList');   //购买课程列表
+        Route::get('book/store/list', 'UserController@getUserStoredBook');   //收藏图书列表
+        Route::get('book/store/delete', 'UserController@deleteUserStoredBook');   //收藏图书列表
     });
     Route::group(['prefix' => 'report'], function () {
         Route::get('list', 'ReportController@index');
