@@ -30,7 +30,7 @@ class CourseGroupController extends Controller
         ];
         $result = CourseGroup::create($data);
         $groupId = $result->id;
-        $rst = CourseGroupMember::create(['openid' => $openid, 'course_id' => $courseId, 'group_id' => $groupId, 'status' => 1]);
+        $rst = CourseGroupMember::create(['openid' => $openid, 'course_id' => $courseId, 'group_id' => $groupId, 'status' => 1, 'owner' => 1]);
         CourseGroup::find($groupId)->decrement('left_num');
         if ($rst) {
             return ['success' => 1, 'group_id' => $result->id];
@@ -56,11 +56,11 @@ class CourseGroupController extends Controller
             CourseGroupMember::where('openid', $openid)
                 ->where('group_id', $groupId)
                 ->first();
-            $rst = CourseGroupMember::firstOrCreate(['openid' => $openid, 'course_id' => $courseId, 'group_id' => $groupId, 'status' => 1]);
+            $rst = CourseGroupMember::firstOrCreate(['openid' => $openid, 'course_id' => $courseId, 'group_id' => $groupId, 'owner' => 0], ['status' => 1]);
             CourseGroup::find($groupId)->decrement('left_num');
 
         } else {
-            $rst = CourseGroupMember::firstOrCreate(['openid' => $openid, 'course_id' => $courseId, 'group_id' => $groupId, 'status' => 0]);
+            $rst = CourseGroupMember::firstOrCreate(['openid' => $openid, 'course_id' => $courseId, 'group_id' => $groupId, 'owner' => 0], ['status' => 0]);
         }
 
 
