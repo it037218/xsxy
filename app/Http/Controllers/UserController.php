@@ -128,6 +128,8 @@ class UserController extends Controller
 
     public function userCourseList(Request $request)
     {
+        $pageSize = $request->input('pageSize', 10);
+
         $openid = $request->input('openid');
         $page = $request->input('page', 1);
         $result = Course::where('openid', $openid)
