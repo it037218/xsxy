@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\CourseGroupMember;
 use App\Models\Report;
 use App\Models\User;
 use App\Models\UserBookStore;
@@ -105,4 +106,18 @@ class UserController extends Controller
         $result = UserBookStore::find($id)->delete();
         return ['success' => $result ? 1 : 0];
     }
+
+    public function userPubCourseList(Request $request)
+    {
+        $openid = $request->input('openid');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 10);
+        $result = CourseGroupMember::where('openid', $openid)
+            ->skip(($page - 1) * $pageSize)
+            ->take($pageSize)
+            ->orderByDesc('created_at')
+            ->get();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
+
 }
