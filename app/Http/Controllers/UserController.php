@@ -110,6 +110,7 @@ class UserController extends Controller
         return ['success' => $result ? 1 : 0];
     }
 
+    //用户报名课程列表
     public function userCourseGroupList(Request $request)
     {
         $openid = $request->input('openid');
@@ -117,7 +118,7 @@ class UserController extends Controller
         $pageSize = $request->input('pageSize', 10);
 
         DB::enableQueryLog();
-        $result = CourseGroupMember::with(['group', 'course'])->where('openid', $openid)
+        $result = CourseGroupMember::with(['group', 'course','group.group_member','group.group_member.user'])->where('openid', $openid)
             ->skip(($page - 1) * $pageSize)
             ->take($pageSize)
             ->orderByDesc('created_at')
@@ -126,6 +127,7 @@ class UserController extends Controller
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
+    //用户开设课程列表
     public function userCourseList(Request $request)
     {
         $pageSize = $request->input('pageSize', 10);
