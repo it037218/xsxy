@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class CourseArrange extends Model
 {
     //
+    protected $table = 'course_arrange';
+    protected $guarded = [];
 }
