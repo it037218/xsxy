@@ -50,6 +50,14 @@ Route::prefix('app')->group(function () {
 
     Route::group(['prefix' => 'course'], function () {
         Route::post('store', 'CourseController@store');
+        Route::get('detail', 'CourseController@detail');
+        Route::get('delete', 'CourseController@delete');
+        Route::post('update', 'CourseController@update');
+    });
+
+    Route::group(['prefix'=>'courseGroup'],function (){
+        Route::post('store','CourseGroupController@store');
+        Route::post('joinIn','CourseGroupController@joinIn');
     });
 
 });
