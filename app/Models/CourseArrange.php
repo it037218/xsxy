@@ -9,4 +9,9 @@ class CourseArrange extends Model
     //
     protected $table = 'course_arrange';
     protected $guarded = [];
+
+    public function image()
+    {
+        return $this->hasOne(Image::class, 'id', 'content');
+    }
 }

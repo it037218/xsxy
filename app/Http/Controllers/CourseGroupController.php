@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseCharge;
 use App\Models\CourseGroup;
 use App\Models\CourseGroupMember;
 use Illuminate\Http\Request;
@@ -15,9 +16,12 @@ class CourseGroupController extends Controller
     {
         $openid = $request->input('openid');
         $courseId = $request->input('course_id');
-        $chargeType = $request->input('course_charge_type');
+        $chargeId = $request->input('course_charge_id');
 //        $courseInfo = Course::with(['charge'])->find($courseId);
-        $leftNum = $totalNum = $chargeType;
+
+        $courseChargeInfo = CourseCharge::find($chargeId);
+
+        $leftNum = $totalNum = $courseChargeInfo->type;
         $data = [
             'openid' => $openid,
             'course_id' => $courseId,
@@ -57,7 +61,7 @@ class CourseGroupController extends Controller
 
         //检查拼团是否已满
         if ($rst) {
-            CourseGroup::find($courseId)->decrement('left_num');
+            CourseGroup::find($groupId)->decrement('left_num');
             return ['success' => 1];
         } else {
             return ['success' => 0, 'msg' => '参团失败'];

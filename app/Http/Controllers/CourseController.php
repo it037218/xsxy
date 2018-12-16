@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\CourseGroup;
 use App\Models\CourseGroupMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -66,8 +67,16 @@ class CourseController extends Controller
     }
     public function detail(Request $request){
         $courseId = $request->input('course_id');
+        $result = Course::with(['charge','arrange','arrange.image'])->find($courseId);
 
-        $result = Course::with(['charge','arrange'])->first();
+        if (!empty($result->arrange)){
+            foreach ($result->arrange as $k=>$v){
+                if($v->type == 2){
+                    $result->arrange[$k]->content = $v->image->url;
+                }
+            }
+
+        }
 
         return $result;
 
