@@ -107,7 +107,7 @@ class UserController extends Controller
         return ['success' => $result ? 1 : 0];
     }
 
-    public function userPubCourseList(Request $request)
+    public function userCourseList(Request $request)
     {
         $openid = $request->input('openid');
         $page = $request->input('page', 1);
