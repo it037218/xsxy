@@ -49,9 +49,9 @@ class CourseController extends Controller
             foreach ($arrange as $k => $v) {
                 $d[] = [
                     'type' => $v['type'],
-                    'content' => $v['content']
+                    'content' => $v['content'],
+                    'course_id'=>$courseId
                 ];
-
             }
             Course::find($courseId)->arrange()->createMany($d);
         }

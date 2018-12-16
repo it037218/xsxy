@@ -9,10 +9,14 @@ class Course extends Model
     //
     protected $table = 'course';
     protected $guarded = [];
-    public function charge(){
-        return $this->hasMany(CourseCharge::class,'id','course_id');
-    }
-    public function arrange(){
 
+    public function charge()
+    {
+        return $this->hasMany(CourseCharge::class, 'id', 'course_id');
+    }
+
+    public function arrange()
+    {
+        return $this->hasMany(CourseArrange::class, 'id', 'course_id');
     }
 }
