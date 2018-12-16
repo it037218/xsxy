@@ -11,4 +11,14 @@ class CourseGroupMember extends Model
     use SoftDeletes;
     protected $table = 'course_group_member';
     protected $guarded = [];
+
+    public function group()
+    {
+        return $this->hasOne(CourseGroup::class, 'id', 'group_id');
+    }
+
+    public function course()
+    {
+        return $this->hasOne(Course::class, 'id', 'course_id');
+    }
 }

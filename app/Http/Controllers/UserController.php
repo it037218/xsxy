@@ -112,7 +112,7 @@ class UserController extends Controller
         $openid = $request->input('openid');
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 10);
-        $result = CourseGroupMember::where('openid', $openid)
+        $result = CourseGroupMember::with(['group','course'])->where('openid', $openid)
             ->skip(($page - 1) * $pageSize)
             ->take($pageSize)
             ->orderByDesc('created_at')
