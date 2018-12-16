@@ -19,8 +19,8 @@ Route::prefix('app')->group(function () {
         Route::get('getUserInfo', 'UserController@getUserInfo');
         Route::get('report/list', 'UserController@getUserReport');
         Route::get('book/pub', 'UserController@getUserPubBook');
+        Route::get('courseGroup/list', 'UserController@userCourseGroupList');   //拼团列表
         Route::get('course/list', 'UserController@userCourseList');   //创建课程列表
-//        Route::get('course/pub/list', 'UserController@userPubCourseList');   //购买课程列表
         Route::get('book/store/list', 'UserController@getUserStoredBook');   //收藏图书列表
         Route::get('book/store/delete', 'UserController@deleteUserStoredBook');   //收藏图书列表
     });

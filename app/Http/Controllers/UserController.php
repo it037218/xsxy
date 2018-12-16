@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Course;
 use App\Models\CourseGroupMember;
 use App\Models\Report;
 use App\Models\User;
@@ -107,12 +108,13 @@ class UserController extends Controller
         return ['success' => $result ? 1 : 0];
     }
 
-    public function userCourseList(Request $request)
+    public function userCourseGroupList(Request $request)
     {
         $openid = $request->input('openid');
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 10);
-        $result = CourseGroupMember::with(['group','course'])->where('openid', $openid)
+
+        $result = CourseGroupMember::with(['group', 'course'])->where('openid', $openid)
             ->skip(($page - 1) * $pageSize)
             ->take($pageSize)
             ->orderByDesc('created_at')
@@ -120,4 +122,15 @@ class UserController extends Controller
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
+    public function userCourseList(Request $request)
+    {
+        $openid = $request->input('openid');
+        $page = $request->input('page', 1);
+        $result = Course::where('openid', $openid)
+            ->skip(($page - 1) * $pageSize)
+            ->take($pageSize)
+            ->orderByDesc('created_at')
+            ->get();
+        return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
 }
