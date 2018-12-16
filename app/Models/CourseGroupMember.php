@@ -26,4 +26,9 @@ class CourseGroupMember extends Model
     {
         return $this->hasOne(User::class, 'openid', 'openid');
     }
+
+    public function courseCharge()
+    {
+        return $this->hasOne(CourseCharge::class, 'id', 'course_charge_id');
+    }
 }

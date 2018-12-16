@@ -14,7 +14,7 @@ class CourseGroup extends Model
 
     public function group_member()
     {
-        return $this->hasMany(CourseGroupMember::class, 'id', 'group_id');
+        return $this->hasMany(CourseGroupMember::class, 'group_id', 'id');
     }
 
 }

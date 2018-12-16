@@ -117,13 +117,12 @@ class UserController extends Controller
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 10);
 
-        DB::enableQueryLog();
-        $result = CourseGroupMember::with(['group', 'course','group.group_member','group.group_member.user'])->where('openid', $openid)
+        $result = CourseGroupMember::with(['courseCharge','group', 'course','group.group_member','group.group_member.user'])->where('openid', $openid)
             ->skip(($page - 1) * $pageSize)
             ->take($pageSize)
             ->orderByDesc('created_at')
             ->get();
-        Log::info(DB::getQueryLog());
+
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
