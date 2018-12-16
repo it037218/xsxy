@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\UserBookStore;
 use App\Services\UserServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -114,11 +116,13 @@ class UserController extends Controller
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 10);
 
+        DB::enableQueryLog();
         $result = CourseGroupMember::with(['group', 'course'])->where('openid', $openid)
             ->skip(($page - 1) * $pageSize)
             ->take($pageSize)
             ->orderByDesc('created_at')
             ->get();
+        Log::info(DB::getQueryLog());
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
