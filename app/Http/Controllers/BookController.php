@@ -28,7 +28,8 @@ class BookController extends Controller
             'price' => $request->input('price'),
             'number' => $request->input('number', 1),
             'contact_user' => $request->input('contact_user'),
-            'contact_tel' => $request->input('contact_tel')
+            'contact_tel' => $request->input('contact_tel'),
+            'content'=>$request->input('content')
         ];
         DB::beginTransaction();
         $result = Book::create($data);
@@ -40,10 +41,18 @@ class BookController extends Controller
 
         $bookId = $result->id;
 
-        if (!empty($request->input('image_id'))) {
+        if (!empty($request->input('cover_images'))) {
 
-            $imageIds = $request->input('image_id');
-            $result = Book::find($bookId)->images()->sync($imageIds);
+            $imageIds = $request->input('cover_images');
+            $result = Book::find($bookId)->CoverImages()->sync($imageIds);
+            if (!$result){
+                DB::rollBack();
+            }
+        }
+        if (!empty($request->input('detail_images'))) {
+
+            $imageIds = $request->input('detail_images');
+            $result = Book::find($bookId)->DetailImages()->sync($imageIds);
             if (!$result){
                 DB::rollBack();
             }

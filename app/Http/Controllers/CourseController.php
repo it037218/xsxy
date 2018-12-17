@@ -27,7 +27,6 @@ class CourseController extends Controller
             return ['success' => 0, 'msg' => '创建失败'];
         }
         $courseId = $result->id;
-//        var_dump($request->input('charge'));exit;
         //添加拼团收费设置
         if (!empty($request->input('charge'))) {
 

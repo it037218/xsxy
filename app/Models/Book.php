@@ -24,6 +24,17 @@ class Book extends Model
         return $this->hasOne(Image::class, 'id', 'cover_image_id');
     }
 
+    public function CoverImages()
+    {
+        return $this->belongsToMany(Image::class, 'book_cover_images', 'book_id', 'image_id');
+    }
+
+    public function DetailImages()
+    {
+        return $this->belongsToMany(Image::class, 'book_detail_images', 'book_id', 'image_id');
+
+    }
+
     public function images()
     {
         return $this->belongsToMany(Image::class, 'book_image', 'book_id', 'image_id');
