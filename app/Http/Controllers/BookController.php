@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Report;
 use App\Models\UserReportAgree;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -20,16 +21,34 @@ class BookController extends Controller
     {
         $data = [
             'book_name' => $request->input('book_name'),
-            'cover_image_id' => $request->input('image_id'),
             'grade' => $request->input('grade'),
             'desc' => $request->input('desc'),
             'openid' => $request->input('openid'),
             'location' => $request->input('location'),
             'price' => $request->input('price'),
             'number' => $request->input('number', 1),
-            'contact' => $request->input('contact')
+            'contact_user' => $request->input('contact_user'),
+            'contact_tel' => $request->input('contact_tel')
         ];
+        DB::beginTransaction();
         $result = Book::create($data);
+
+        if (!$result) {
+            DB::rollBack();
+            return ['success' => 0, 'msg' => '创建失败'];
+        }
+
+        $bookId = $result->id;
+
+        if (!empty($request->input('image_id'))) {
+
+            $imageIds = $request->input('image_id');
+            $result = Book::find($bookId)->images()->sync($imageIds);
+            if (!$result){
+                DB::rollBack();
+            }
+        }
+        DB::commit();
         return ['success' => $result ? 1 : 0];
     }
 
