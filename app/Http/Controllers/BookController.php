@@ -13,7 +13,7 @@ class BookController extends Controller
     //
     public function index()
     {
-        $result = Book::with(['cover_image'])->orderByDesc('created_at')->get();
+        $result = Book::with(['CoverImages'])->orderByDesc('created_at')->get();
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
