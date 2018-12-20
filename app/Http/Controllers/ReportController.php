@@ -51,7 +51,8 @@ class ReportController extends Controller
         $data = [
             'openid' => $openid,
             'content' => $content,
-            'book_name' => $bookName
+            'book_name' => $bookName,
+            'book_id'=>$request->input('book_id',-1)
         ];
         DB::beginTransaction();
         try {
