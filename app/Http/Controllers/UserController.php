@@ -92,7 +92,7 @@ class UserController extends Controller
     public function getUserPubBook(Request $request)
     {
         $openid = $request->input('openid');
-        $result = Book::with(['cover_image'])->where('openid', $openid)->orderByDesc('created_at')->get();
+        $result = Book::with(['CoverImages'])->where('openid', $openid)->orderByDesc('created_at')->get();
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
 
