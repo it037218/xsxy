@@ -40,6 +40,8 @@ Route::prefix('app')->group(function () {
         Route::post('upload', 'SystemController@upload');
         Route::post('saveFormId', 'SystemController@saveFormId');
         Route::get('slider/list', 'SystemController@sliderList');
+        Route::get('grade/list', 'SystemController@gradeList');
+        Route::get('class/list', 'SystemController@classList');
     });
     Route::group(['prefix' => 'book'], function () {
         Route::post('store', 'BookController@store');

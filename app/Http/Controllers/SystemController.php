@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
 use App\Models\FormId;
+use App\Models\Grade;
+use App\Models\Grades;
 use App\Models\Image;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -39,5 +42,11 @@ class SystemController extends Controller
     {
         $result = Slider::all();
         return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
+    public function gradeList(){
+        return Grades::all();
+    }
+    public function classList(){
+        return Classes::all();
     }
 }
