@@ -44,9 +44,9 @@ class SystemController extends Controller
         return ['success' => $result ? 1 : 0, 'content' => $result];
     }
     public function gradeList(){
-        return Grades::all();
+        return ['success'=>1,'content'=>Grades::all()];
     }
     public function classList(){
-        return Classes::all();
+        return ['success'=>1,'content'=>Classes::all()];
     }
 }
