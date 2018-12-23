@@ -48,6 +48,8 @@ Route::prefix('app')->group(function () {
         Route::get('detail', 'BookController@detail');
         Route::get('list', 'BookController@index');
         Route::get('report/list', 'BookController@reportList');
+        Route::get('delete','BookController@delete');
+        Route::post('update','BookController@update');
     });
 
     Route::group(['prefix' => 'course'], function () {

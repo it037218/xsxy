@@ -61,6 +61,49 @@ class BookController extends Controller
         return ['success' => $result ? 1 : 0];
     }
 
+    public function update(Request $request){
+        $data = [
+            'book_name' => $request->input('book_name'),
+            'grade' => $request->input('grade'),
+            'desc' => $request->input('desc'),
+            'openid' => $request->input('openid'),
+            'location' => $request->input('location'),
+            'price' => $request->input('price'),
+            'number' => $request->input('number', 1),
+            'contact_user' => $request->input('contact_user'),
+            'contact_tel' => $request->input('contact_tel'),
+            'content'=>$request->input('content')
+        ];
+        $bookId = $request->input('book_id');
+        DB::beginTransaction();
+        $result = Book::find($bookId)->update($data);
+
+        if (!$result) {
+            DB::rollBack();
+            return ['success' => 0, 'msg' => ' 编辑失败'];
+        }
+
+        if (!empty($request->input('cover_images'))) {
+
+            $imageIds = $request->input('cover_images');
+            $result = Book::find($bookId)->CoverImages()->sync($imageIds);
+            if (!$result){
+                DB::rollBack();
+            }
+        }
+        if (!empty($request->input('detail_images'))) {
+
+            $imageIds = $request->input('detail_images');
+            $result = Book::find($bookId)->DetailImages()->sync($imageIds);
+            if (!$result){
+                DB::rollBack();
+            }
+        }
+        DB::commit();
+        return ['success' => $result ? 1 : 0];
+    }
+
+
 
     public function detail(Request $request)
     {
@@ -95,5 +138,16 @@ class BookController extends Controller
             }
         }
         return ['success' => $result ? 1 : 0, 'content' => $result];
+    }
+    public function delete(Request $request){
+        $bookId = $request->input('book_id');
+        $openid = $request->input('openid');
+        $bookInfo = Book::find($bookId);
+        if ($openid != $bookInfo->openid){
+            return ['success'=>'-1','msg'=>'无操作权限'];
+        }
+
+        $result = $bookInfo->delete();
+        return ['success'=>$result?1:0];
     }
 }
