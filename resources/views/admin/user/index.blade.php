@@ -32,7 +32,7 @@
                     <td>{{$value->created_at}}</td>
                     <td>
                         <button class="layui-btn-group">
-                            <a href="/admin/user/show/id/{{$value->id}}" class="layui-btn ">
+                            <a href="/admin/user/show/id/{{$value->id}}" class="layui-btn layui-btn-sm">
                                 详情
                             </a>
                         </button>
