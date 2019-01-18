@@ -118,7 +118,7 @@
                         发布时间
                     </td>
                 </tr>
-                </thead>k
+                </thead>
                 @if(!empty($userReport))
                     @foreach($userReport as $k=>$v)
                         <tr>
