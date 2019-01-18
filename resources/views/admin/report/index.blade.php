@@ -24,7 +24,7 @@
                         {{$value->book_name}}
                     </td>
                     <td>
-                        {{$value->author->nickname}}
+                        {{!empty($value->author)?$value->author->nickname:''}}
                     </td>
                     <td>
                         {{$value->content}}
