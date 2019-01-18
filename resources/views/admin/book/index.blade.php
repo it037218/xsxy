@@ -7,8 +7,8 @@
         <tr>
             <th>图书编号</th>
             <th>图书信息</th>
-            <th>图书介绍</th>
-            <th>修改时间</th>
+            <th>发布者信息</th>
+            <th>发布时间</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -17,12 +17,20 @@
             @foreach($result as $value)
                 <tr>
                     <td>
+                        {{$value->id}}
                     </td>
                     <td>
+                        {{$value->book_name}}
                     </td>
                     <td>
+                        {{--<img src="" style="width: 30px;height: 30px;border-radius: 50%">--}}
+                        {{$value->contact_user}}
                     </td>
                     <td>
+                        {{$value->created_at}}
+                    </td>
+                    <td>
+
                     </td>
                 </tr>
             @endforeach
