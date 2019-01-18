@@ -48,8 +48,8 @@ Route::prefix('app')->group(function () {
         Route::get('detail', 'BookController@detail');
         Route::get('list', 'BookController@index');
         Route::get('report/list', 'BookController@reportList');
-        Route::get('delete','BookController@delete');
-        Route::post('update','BookController@update');
+        Route::get('delete', 'BookController@delete');
+        Route::post('update', 'BookController@update');
     });
 
     Route::group(['prefix' => 'course'], function () {
@@ -59,9 +59,9 @@ Route::prefix('app')->group(function () {
         Route::post('update', 'CourseController@update');
     });
 
-    Route::group(['prefix'=>'courseGroup'],function (){
-        Route::post('store','CourseGroupController@store');
-        Route::post('joinIn','CourseGroupController@joinIn');
+    Route::group(['prefix' => 'courseGroup'], function () {
+        Route::post('store', 'CourseGroupController@store');
+        Route::post('joinIn', 'CourseGroupController@joinIn');
     });
 
 });
@@ -81,21 +81,21 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::get('/modify/id/{id}', 'UserController@modify');
         Route::post('/update', 'UserController@update');
     });
-    Route::group(['prefix' => 'account'], function () {
-        Route::get('/', 'AccountController@index');
-        Route::get('/show/id/{id}', 'AccountController@show');
-        Route::get('/modify/id/{id}', 'AccountController@modify');
-        Route::post('/update', 'AccountController@update');
-    });
-    Route::group(['prefix' => 'commodity'], function () {
-        Route::get('/', 'CommodityController@index');
-        Route::get('/show/id/{id}', 'CommodityController@show');
-        Route::get('/add', 'CommodityController@add');
-        Route::post('/store', 'CommodityController@store');
-    });
-    Route::group(['prefix' => 'order'], function () {
+//    Route::group(['prefix' => 'account'], function () {
+//        Route::get('/', 'AccountController@index');
+//        Route::get('/show/id/{id}', 'AccountController@show');
+//        Route::get('/modify/id/{id}', 'AccountController@modify');
+//        Route::post('/update', 'AccountController@update');
+//    });
+//    Route::group(['prefix' => 'commodity'], function () {
+//        Route::get('/', 'CommodityController@index');
+//        Route::get('/show/id/{id}', 'CommodityController@show');
+//        Route::get('/add', 'CommodityController@add');
+//        Route::post('/store', 'CommodityController@store');
+//    });
+    Route::group(['prefix' => 'report'], function () {
 
-        Route::get('/', 'OrderController@index');
+        Route::get('/', 'ReportController@index');
 
     });
 });
