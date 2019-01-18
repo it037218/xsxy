@@ -118,9 +118,9 @@
                         发布时间
                     </td>
                 </tr>
-                </thead>
+                </thead>k
                 @if(!empty($userReport))
-                    @foreach($userReport as $v=>$v)
+                    @foreach($userReport as $k=>$v)
                         <tr>
                             <td>
                                 {{$v->book_name}}
