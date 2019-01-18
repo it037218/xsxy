@@ -8,7 +8,7 @@ class User extends Model
 {
     //
     protected $table = 'users';
-
+    protected $guarded=[];
     public static function userGender($gender)
     {
         $array = [

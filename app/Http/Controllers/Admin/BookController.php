@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
+use App\Models\Book;
 use App\Services\BookServices;
 use App\Services\CommodityServices;
 use Illuminate\Http\Request;
@@ -15,8 +16,7 @@ class BookController extends Controller
     //
     public function index()
     {
-        $bookService = new BookServices();
-        $result = $bookService->getAllBook();
+        $result = Book::with(['CoverImages'])->orderByDesc('created_at')->get();
         return view('admin.book.index')->with([
             'result' => $result
         ]);

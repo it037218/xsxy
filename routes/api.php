@@ -13,6 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::prefix('app')->group(function () {
+    Route::group(['prefix'=>'user'],function (){
+        Route::get('getOpenid','UserController@getOpenid');
+        Route::get('saveUserInfo','UserController@saveUserInfo');
+        Route::get('saveUserFullInfo','UserController@saveUserFullInfo');
+        Route::get('getUserInfo','UserController@getUserInfo');
+    });
 });
+
+
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});

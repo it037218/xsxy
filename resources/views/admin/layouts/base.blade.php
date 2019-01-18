@@ -7,14 +7,21 @@
                     <a class="" href="javascript:;"><i class="layui-icon layui-icon-group"></i>&nbsp;图书管理</a>
                     <dl class="layui-nav-child">
                         <dd class="userList"><a href="/admin/book">图书列表</a></dd>
-                        <dd class="userDegree"><a href="/admin/book/add">新增图书</a></dd>
+                        {{--<dd class="userDegree"><a href="/admin/book/add">新增图书</a></dd>--}}
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a class="" href="javascript:;"><i class="layui-icon layui-icon-group"></i>&nbsp;用户管理</a>
                     <dl class="layui-nav-child">
                         <dd class="userList"><a href="/admin/user">用户列表</a></dd>
-                        <dd class="userDegree"><a href="/admin/user/tag">用户标签设置</a></dd>
+                        {{--<dd class="userDegree"><a href="/admin/user/tag">用户标签设置</a></dd>--}}
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;"><i class="layui-icon layui-icon-group"></i>&nbsp;读后感管理</a>
+                    <dl class="layui-nav-child">
+                        <dd class="userList"><a href="/admin/report">读后感列表</a></dd>
+                        {{--<dd class="userDegree"><a href="/admin/user/tag">用户标签设置</a></dd>--}}
                     </dl>
                 </li>
             </ul>
