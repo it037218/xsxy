@@ -24,7 +24,10 @@ class BookController extends Controller
 
     public function show(Request $request, $id)
     {
-        return view('admin.book.show');
+        $result = Book::with(['CoverImages', 'DetailImages'])->find($id);
+        return view('admin.book.show')->with([
+            'result' => $result
+        ]);
     }
 
     public function add()
