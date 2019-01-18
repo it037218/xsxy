@@ -24,9 +24,10 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $result = User::find($id);
+        $userInfo = User::find($id);
+
         return view('admin.user.show')->with([
-            'result' => $result
+            'userInfo' => $userInfo
         ]);
     }
 
